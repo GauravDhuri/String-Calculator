@@ -24,4 +24,16 @@ describe('String calculator', () => {
   it('should be able to return sum of numbers separated by commas and new lines', () => {
     expect(add('1,2\n3,4\n5')).toBe(15);
   })
+
+  it('should be able to return sum of numbers separated by custom delimiter ; and new lines', () => {
+    expect(add('//;\n1;2\n3;4;5')).toBe(15);
+  })
+
+  it('should be able to return sum of numbers separated by custom delimiter : and new lines', () => {
+    expect(add('//:\n1:2\n3:4\n5')).toBe(15);
+  })
+
+  it('should be able to return sum of numbers separated by custom delimiter | and new lines', () => {
+    expect(add('//|\n1|2\n3|4|5')).toBe(15);
+  })
 })
