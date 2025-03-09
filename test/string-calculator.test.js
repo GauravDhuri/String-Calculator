@@ -20,4 +20,8 @@ describe('String calculator', () => {
 
     expect(add(input)).toBe(expected);
   })
+
+  it('should be able to return sum of numbers separated by commas and new lines', () => {
+    expect(add('1,2\n3,4\n5')).toBe(15);
+  })
 })
