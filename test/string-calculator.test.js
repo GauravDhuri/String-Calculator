@@ -53,4 +53,9 @@ describe('String calculator', () => {
   it('should support multi-character delimiters', () => {
     expect(add('//[***]\n1***2***3')).toBe(6);
   });
+
+  it('should be able to return sum of numbers separated by multiple custom delimiters', () => {
+    expect(add('//[*][%]\n1*2%3')).toBe(6);
+    expect(add('//[|][;]\n1|2;3\n4;10001|5')).toBe(15);
+  });
 })

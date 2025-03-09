@@ -3,13 +3,20 @@ function add(stringifiedNums) {
 
   if (stringifiedNums.startsWith('//')) {
     const delimiterEndIndex = stringifiedNums.indexOf('\n');
-    const delimiter = stringifiedNums.slice(2, delimiterEndIndex);
+    const delimiterList = stringifiedNums.slice(2, delimiterEndIndex);
     const string = stringifiedNums.slice(delimiterEndIndex + 1); 
-    const regex = new RegExp(`[${delimiter}|\\n]`, 'g');
 
-    console.log('string', string, regex)
+    let delimiters = [];
+
+    if (delimiterList.startsWith('[')) {
+      delimiters = delimiterList.match(/\[([^\]]+)\]/g).map(d => d.slice(1, -1));
+    } else {
+      delimiters = [delimiterList];
+    }
+
+    const regex = new RegExp(`[${delimiters.join('|')}|\\n]`, 'g');
+
     numbers = parseNumbers(string, regex);
-    console.log(numbers)
   } else {
     numbers = parseNumbers(stringifiedNums);
   }
