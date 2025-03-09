@@ -1,9 +1,10 @@
 {
   "name": "string-calculator",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "string-calculator.js",
   "scripts": {
-    "start": "node ./index.js"
+    "start": "node ./string-calculator.js",
+    "test": "jest --watchAll --verbose"
   },
   "dependencies": {
     "jest": "29.7.0",
