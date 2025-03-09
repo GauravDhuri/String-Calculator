@@ -49,4 +49,8 @@ describe('String calculator', () => {
     expect(add('1000,1001,999')).toBe(1999);
     expect(add('//;\n2;1001;999')).toBe(1001);
   });
+
+  it('should support multi-character delimiters', () => {
+    expect(add('//[***]\n1***2***3')).toBe(6);
+  });
 })

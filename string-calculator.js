@@ -2,11 +2,14 @@ function add(stringifiedNums) {
   let numbers;
 
   if (stringifiedNums.startsWith('//')) {
-    const delimiter = stringifiedNums.slice(2, 3);
-    const string = stringifiedNums.slice(4); 
-    const regex = new RegExp(`[${delimiter}\n]`);
+    const delimiterEndIndex = stringifiedNums.indexOf('\n');
+    const delimiter = stringifiedNums.slice(2, delimiterEndIndex);
+    const string = stringifiedNums.slice(delimiterEndIndex + 1); 
+    const regex = new RegExp(`[${delimiter}|\\n]`, 'g');
 
+    console.log('string', string, regex)
     numbers = parseNumbers(string, regex);
+    console.log(numbers)
   } else {
     numbers = parseNumbers(stringifiedNums);
   }
