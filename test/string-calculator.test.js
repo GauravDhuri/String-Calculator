@@ -36,4 +36,11 @@ describe('String calculator', () => {
   it('should be able to return sum of numbers separated by custom delimiter | and new lines', () => {
     expect(add('//|\n1|2\n3|4|5')).toBe(15);
   })
+
+  it('should throw an expection if list of numbers has negative value', () => {
+    expect(() => add('1,-2,3')).toThrow('Negative numbers not allowed: -2');
+    expect(() => add('//;\n1;-2;3')).toThrow('Negative numbers not allowed: -2');
+    expect(() => add('//:\n1:-2:3')).toThrow('Negative numbers not allowed: -2');
+    expect(() => add('//|\n1|-2|3')).toThrow('Negative numbers not allowed: -2');
+  })
 })

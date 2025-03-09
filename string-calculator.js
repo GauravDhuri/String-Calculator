@@ -1,13 +1,30 @@
 function add(stringifiedNums) {
-  if(stringifiedNums.startsWith('//')) {
+  let numbers;
+
+  if (stringifiedNums.startsWith('//')) {
     const delimiter = stringifiedNums.slice(2, 3);
     const string = stringifiedNums.slice(4); 
     const regex = new RegExp(`[${delimiter}\n]`);
 
-    return string.split(regex).map(Number).reduce((sum, num) => sum + num, 0);
+    numbers = parseNumbers(string, regex);
+  } else {
+    numbers = parseNumbers(stringifiedNums);
   }
 
-  return stringifiedNums.split(/[\n,]/).map(Number).reduce((sum, num) => sum + num, 0);
+  checkForNegativeNumbers(numbers);
+  
+  return numbers.reduce((sum, num) => sum + num, 0);
+}
+
+function checkForNegativeNumbers(numbers) {
+  const negativeNums = numbers.filter(num => num < 0);
+  if (negativeNums.length > 0) {
+    throw new Error(`Negative numbers not allowed: ${negativeNums.join(', ')}`);
+  }
+}
+
+function parseNumbers(stringifiedNums, delimiter = /[\n,]/) {
+  return stringifiedNums.split(delimiter).map(Number);
 }
 
 module.exports = {
