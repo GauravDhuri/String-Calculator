@@ -43,4 +43,10 @@ describe('String calculator', () => {
     expect(() => add('//:\n1:-2:3')).toThrow('Negative numbers not allowed: -2');
     expect(() => add('//|\n1|-2|3')).toThrow('Negative numbers not allowed: -2');
   })
+
+  it('should ignore numbers greater than 1000', () => {
+    expect(add('2,1001')).toBe(2);
+    expect(add('1000,1001,999')).toBe(1999);
+    expect(add('//;\n2;1001;999')).toBe(1001);
+  });
 })

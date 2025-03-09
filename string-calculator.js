@@ -11,6 +11,8 @@ function add(stringifiedNums) {
     numbers = parseNumbers(stringifiedNums);
   }
 
+  numbers = numbers.filter(num => num <= 1000);
+
   checkForNegativeNumbers(numbers);
   
   return numbers.reduce((sum, num) => sum + num, 0);
