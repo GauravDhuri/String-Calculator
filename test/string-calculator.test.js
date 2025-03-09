@@ -12,4 +12,12 @@ describe('String calculator', () => {
   it('return sum of two numbers', () => {
     expect(add('1,2')).toBe(3);
   })
+
+  it('should be able return sum of n numbers (n is set to a limit of 100 for demo purpose)', () => {
+    const numbers = Array.from({ length: Math.random() * 100 }, () => Math.floor(Math.random() * 10));
+    const input = numbers.join(',');
+    const expected = numbers.reduce((sum, num) => sum + num, 0);
+
+    expect(add(input)).toBe(expected);
+  })
 })
