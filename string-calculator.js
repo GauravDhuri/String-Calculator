@@ -2,18 +2,16 @@ function calculate(stringifiedNums) {
   let numbers;
   let delimiters = [];
 
-  // Parse numbers and delimiters
   if (stringifiedNums.startsWith('//')) {
     const parsedData = customDelimeter(stringifiedNums, delimiters)
     numbers = parsedData.parseNumbers;
+    delimiters = parsedData.parsedDelimeters;
   } else {
     numbers = parseNumbers(stringifiedNums);
   }
 
-  // Validate Numbers
   numbers = validateNumbers(numbers);
   
-  // Perform Operation
   const result = performOperation(numbers, delimiters);
 
   return result;
@@ -33,12 +31,11 @@ function customDelimeter(stringifiedNums, delimiters) {
   } else {
     delimiters = [delimiterList];
   }
-
   const regex = new RegExp(`[${delimiters.join('|')}|\\n]`, 'g');
-
   numbers = parseNumbers(string, regex);
   return {
     parseNumbers: numbers,
+    parsedDelimeters: delimiters
   }
 }
 
@@ -59,7 +56,7 @@ function performOperation(numbers, delimiters) {
     case '+':
       return numbers.reduce((sum, num) => sum + num, 0);
     case '*':
-    return numbers.reduce((sum, num) => sum * num, 0);
+      return numbers.reduce((sum, num) => sum * num, 1);
   }
 }
 

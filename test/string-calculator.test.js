@@ -1,4 +1,4 @@
-const { calculate } = require("../String-Calculator");
+const { calculate } = require("../string-calculator");
 
 describe('String calculator', () => {
   it('should return 0 for an empty string', () => {
@@ -58,4 +58,9 @@ describe('String calculator', () => {
     expect(calculate('//[*][%]\n1*2%3')).toBe(6);
     expect(calculate('//[|][;]\n1|2;3\n4;10001|5')).toBe(15);
   });
+
+  it('should be able to multiple numbers if the delimeter is *', () => {
+    expect(calculate('//[*]\n1*2*3')).toBe(6);
+    expect(calculate('//[*]\n0*2*3')).toBe(0);
+  })
 })
